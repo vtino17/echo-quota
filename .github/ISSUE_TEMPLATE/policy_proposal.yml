@@ -1,0 +1,25 @@
+name: Policy proposal
+description: Propose a new lineage or contamination control.
+title: "[Policy]: "
+labels: ["enhancement", "policy"]
+body:
+  - type: textarea
+    id: risk
+    attributes:
+      label: Failure mode
+      description: Which corpus risk is not currently detected?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and examples
+      description: Link primary research or provide sanitized examples.
+    validations:
+      required: true
+  - type: textarea
+    id: rule
+    attributes:
+      label: Proposed deterministic rule
+    validations:
+      required: true

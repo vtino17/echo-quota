@@ -1,0 +1,19 @@
+{
+  "batchVersion": "1.0",
+  "datasetId": "assistant-corpus",
+  "assets": [
+    {
+      "id": "synthetic-docs-clean",
+      "contentHash": "sha256:synthetic-clean",
+      "origin": "synthetic",
+      "modelFamily": "atlas-1",
+      "sourceIds": ["human-docs-a"],
+      "split": "train",
+      "license": "CC-BY-4.0",
+      "createdAt": "2026-02-01T00:00:00.000Z",
+      "weight": 10,
+      "humanFraction": 0,
+      "domain": "technical-docs"
+    }
+  ]
+}

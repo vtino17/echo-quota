@@ -1,0 +1,42 @@
+{
+  "catalogVersion": "1.0",
+  "datasetId": "assistant-corpus",
+  "assets": [
+    {
+      "id": "human-docs-a",
+      "contentHash": "sha256:human-a",
+      "origin": "human",
+      "sourceIds": [],
+      "split": "train",
+      "license": "CC-BY-4.0",
+      "createdAt": "2026-01-10T00:00:00.000Z",
+      "weight": 60,
+      "humanFraction": 1,
+      "domain": "technical-docs"
+    },
+    {
+      "id": "human-docs-b",
+      "contentHash": "sha256:human-b",
+      "origin": "human",
+      "sourceIds": [],
+      "split": "train",
+      "license": "MIT",
+      "createdAt": "2026-01-11T00:00:00.000Z",
+      "weight": 30,
+      "humanFraction": 1,
+      "domain": "technical-docs"
+    },
+    {
+      "id": "sealed-eval",
+      "contentHash": "sha256:eval-secret",
+      "origin": "human",
+      "sourceIds": [],
+      "split": "eval",
+      "license": "CC-BY-4.0",
+      "createdAt": "2026-01-12T00:00:00.000Z",
+      "weight": 10,
+      "humanFraction": 1,
+      "domain": "evaluation"
+    }
+  ]
+}

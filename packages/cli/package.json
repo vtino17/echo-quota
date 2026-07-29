@@ -1,0 +1,9 @@
+{
+  "name": "@echoquota/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": { "echo-quota": "./dist/index.js" },
+  "dependencies": { "@echoquota/core": "workspace:*" },
+  "scripts": { "build": "tsc -p tsconfig.build.json" }
+}
