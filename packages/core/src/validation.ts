@@ -16,8 +16,17 @@ const assertAssets = (assets: unknown): void => {
       if (typeof asset[field] !== "string") throw new Error(`Asset field "${field}" must be a string.`);
     }
     if (!Array.isArray(asset.sourceIds) || !asset.sourceIds.every((id) => typeof id === "string")) throw new Error("sourceIds must be strings.");
-    if (typeof asset.weight !== "number" || asset.weight <= 0) throw new Error("Asset weight must be positive.");
-    if (typeof asset.humanFraction !== "number" || asset.humanFraction < 0 || asset.humanFraction > 1) throw new Error("humanFraction must be between 0 and 1.");
+    if (
+      typeof asset.weight !== "number"
+      || !Number.isFinite(asset.weight)
+      || asset.weight <= 0
+    ) throw new Error("Asset weight must be finite and positive.");
+    if (
+      typeof asset.humanFraction !== "number"
+      || !Number.isFinite(asset.humanFraction)
+      || asset.humanFraction < 0
+      || asset.humanFraction > 1
+    ) throw new Error("humanFraction must be finite and between 0 and 1.");
     if (ids.has(String(asset.id))) throw new Error(`Duplicate asset id: ${String(asset.id)}`);
     ids.add(String(asset.id));
   }
@@ -36,7 +45,12 @@ export function assertBatch(value: unknown): asserts value is AdmissionBatch {
 export function assertPolicy(value: unknown): asserts value is CorpusPolicy {
   if (!object(value) || value.policyVersion !== "1.0" || typeof value.datasetId !== "string") throw new Error("Invalid corpus policy.");
   for (const field of ["maxSyntheticWeightRatio", "maxModelFamilyWeightRatio"]) {
-    if (typeof value[field] !== "number" || Number(value[field]) < 0 || Number(value[field]) > 1) throw new Error(`${field} must be between 0 and 1.`);
+    if (
+      typeof value[field] !== "number"
+      || !Number.isFinite(value[field])
+      || Number(value[field]) < 0
+      || Number(value[field]) > 1
+    ) throw new Error(`${field} must be finite and between 0 and 1.`);
   }
   for (const field of ["maxSyntheticDepth", "minIndependentHumanRoots"]) {
     if (!Number.isSafeInteger(value[field]) || Number(value[field]) < 0) throw new Error(`${field} must be a non-negative integer.`);

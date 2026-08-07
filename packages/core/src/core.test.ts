@@ -64,6 +64,21 @@ describe("corpus compiler", () => {
     batch.assets[0]!.id = "human-docs-a";
     await expect(compile(batch)).rejects.toThrow("already exists");
   });
+  it.each([Number.NaN, Number.POSITIVE_INFINITY])(
+    "rejects non-finite asset weights (%s)",
+    async (weight) => {
+      const batch = structuredClone(safeBatch);
+      batch.assets[0]!.weight = weight;
+      await expect(compile(batch)).rejects.toThrow("weight must be finite");
+    },
+  );
+  it.each([Number.NaN, Number.POSITIVE_INFINITY])(
+    "rejects non-finite corpus ratios (%s)",
+    async (maxSyntheticWeightRatio) => {
+      const policy = { ...samplePolicy, maxSyntheticWeightRatio };
+      await expect(compile(safeBatch, policy)).rejects.toThrow("maxSyntheticWeightRatio must be finite");
+    },
+  );
 });
 
 describe("receipts", () => {
